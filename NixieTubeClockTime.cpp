@@ -29,7 +29,7 @@ const long timeUpdateCooldown = 2000;
 long lastUpdated = 0;
 unsigned long now = millis();
 
-
+// Connects to the wifi to sync up the time of the esp32 to the NTP server
 void syncTime() {
   Serial.print("in syncTime(): ");
   Serial.println(millis());
@@ -69,6 +69,7 @@ void printLocalTime() {
   Serial.println(&timeinfo, "%M");
 }
 
+// Updates the time variables
 void updateTime() {
   Serial.print("in updateTime(): ");
   Serial.println(millis());
@@ -110,7 +111,7 @@ void setNixieLights(bool turnOn, uint8_t select) {
   {
     ledLight = 3;
   }
-      
+  // Turns on the lights one at a time, required to reduce peak power    
   for (int i = 0; i < 4; i++)
   {
     en.SetNixie(a,ledLight,turnOn && (select & 1) && i >= 0);           //en.SetNixie Last number 
@@ -123,8 +124,8 @@ void setNixieLights(bool turnOn, uint8_t select) {
   
 }
 
-
-void startUpSequence() {
+// turn the lights on from right to left going from 0 to 9 on each light
+void startUpSequence() {  
   Serial.print("in startUpSequence(): ");
   Serial.println(millis());
   for (uint8_t i = 0; i < 4; i++)
@@ -151,7 +152,7 @@ void setup() {
   setNixieLights(false, 0);
   setLEDLights(false);
   syncTime(); // Call to the ntp server
-  //startUpSequence();
+  //startUpSequence(); // Currently pulls too much power for the power supply, but would function with the capacitors
   
   printLocalTime();
 
@@ -165,7 +166,7 @@ void setup() {
 void loop() {
 
   now = millis();
-  if (now - lastUpdated > timeUpdateCooldown) {
+  if (now - lastUpdated > timeUpdateCooldown) { // Update the time every "timeUpdateCooldown"
     updateTime();
     lastUpdated = now;
   }
