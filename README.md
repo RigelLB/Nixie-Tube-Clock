@@ -7,5 +7,6 @@ As a fair warning, the side usb port was put there to program the esp32 without 
 
 Some improvements could be made to the electrical design. If you don't prefer having an both LED's be addressible, the posts that hold up the LED's could be used as the conductor to the second plane. 
 
+The later goal in to add OTA code uploading to the esp32, and add a setup page (via webpage) that modifies the wifi SSID and password, time zone, turn on duration, and other features.
 ![Pictures (1 of 1)](https://github.com/user-attachments/assets/e4787406-f105-4748-95b8-8e9265b6fd7e)
 ![Pictures (1 of 6)](https://github.com/user-attachments/assets/9f4bd479-16ab-47d9-833e-838ed11c81da)
