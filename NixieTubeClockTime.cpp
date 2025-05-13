@@ -10,8 +10,8 @@
 #define LED2   12
 EasyNixie en(OUT_EN,SHCP, STCP, DSIN); //Initialisation 'en' protocole
 uint8_t nixieSelect;
-const char* ssid = "Home";
-const char* password = "blondhe1";
+const char* ssid = "Wifi Name";
+const char* password = "Wifi password";
 
 const char* ntpServer = "pool.ntp.org";
 const long gmtOffset_sec = -18000;
